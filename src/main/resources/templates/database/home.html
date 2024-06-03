@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crude Oil DB</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/purgatory.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/resources/Logo.svg">
+</head>
+<body>
+    <header>
+            <img class="db-icon" src="resources/Logo.svg" alt="CRUD3">
+            <a href="/home"><h1>CMPT276/</h1></a>
+    </header>
+    <main class="table">
+        <form action="add-entry.html">
+            <button>
+                <img class="sm-icon" src="resources/add.svg" alt="+">
+                <div id="section">ADD</div>
+            </button>
+        </form>
+        <form action="db-purge">
+            <button>
+                <img class="sm_icon" src="resources/purge.svg" alt="x">
+                <div class="purge">PURGE</div>
+            </button>
+        </form>
+
+        <div class="table-body">
+            <table>
+                <tr>
+                    <th class="th-1">Select</th>
+                    <th class="th-2">ID</th>
+                    <th class="th-3">Name</th>
+                    <th class="th-4">Color</th>
+                    <th class="th-5">Action</th>
+                </tr>
+                <tr th:each="rectangle:${rectangles}">
+                    <td class="th-1"><input type="checkbox"></td>
+                    <td class="th-2" th:text="${rectangle.uid}"></td>
+                    <td class="th-3"><a th:text="${rectangle.name}" th:href="'rectangles/'+${rectangle.uid}"></a></td>
+                    <td class="th-4" th:text="${T(java.lang.Integer).toHexString(rectangle.color)}"></td>
+                    <td class="th-5"><a class="purge" th:onclick="'purge('+${rectangle.uid}+');'">PURGE!</a></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
