@@ -3,7 +3,6 @@ package com.cmpt276.asn2.controllers;
 import com.cmpt276.asn2.Rarity;
 import com.cmpt276.asn2.models.Rectangle;
 import com.cmpt276.asn2.models.RectangleRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +45,18 @@ public class RectangleController {
         return "database/success";
     }
 
+    @PostMapping("/db-update")
+    public String updateRectangle(@RequestParam Map<String, String> selection, HttpServletResponse response) {
+        Rectangle entry = rectRepo.getReferenceById(Integer.parseInt(selection.get("id")));
+        entry.setName(selection.get("name"));
+        entry.setWidth(Integer.parseInt(selection.get("width")));
+        entry.setHeight(Integer.parseInt(selection.get("height")));
+        entry.setColor(Integer.parseInt(selection.get("color"), 16));
+        entry.setRarity(Rarity.valueOf(selection.get("rarity")));
+        rectRepo.save(entry);
+        return "database/success";
+    }
+
     @GetMapping("/db-purge")
     public String purgeAll() {
         rectRepo.deleteAll();
@@ -59,7 +69,7 @@ public class RectangleController {
         return "database/success";
     }
 
-    @GetMapping("/rectangles/{id}")
+    @GetMapping("/rectangles/ID={id}")
     public String rectangleData(@PathVariable String id, Model model) {
         model.addAttribute("rectangle", rectRepo.getReferenceById(Integer.parseInt(id)));
         return "database/info-page";

@@ -1,3 +1,10 @@
+/**
+ * @file This is the purgatory JS file written for CMPT276 asn2
+ * written on Jun 3rd 2024
+ * handles the deletion of DT entries
+ * @copyright ShiYu Feng 2024
+ */
+
 function post(path, params, method='post') {
 
   // The rest of this code assumes you are not using a library.

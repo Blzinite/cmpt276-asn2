@@ -11,19 +11,25 @@
 </head>
 <body>
     <header>
-            <img class="db-icon" src="/resources/Logo.svg" alt="CRUD3">
-            <a href="/home"><h1>CMPT276/</h1></a>
-            <h1>ADD</h1>
+        <img class="db-icon" src="/resources/Logo.svg" alt="CRUD3">
+        <a href="/home"><h1>CMPT276</h1></a>
+        <h1>/</h1>
+        <h1>ADD</h1>
     </header>
     <form class="table-body" action="db-add" method="post">
         <div class="center-wrapper">
             <div id="rectangle-proxy"></div>
         </div>
         <div class="center-wrapper">
+            <div class="center-text">Name</div>
             <input class="center-item" type="text" id="name" name="name" onchange="setProxyName();" placeholder="Rectangle Name">
+            <div class="center-text">Width</div>
             <input class="center-item" type="number" id="width" name="width" onchange="setProxyWidth();" placeholder="Width">
+            <div class="center-text">Height</div>
             <input class="center-item" type="number" id="height" name="height" onchange="setProxyHeight();" placeholder="Height">
+            <div class="center-text">Color</div>
             <input class="center-item" type="text" id="color" name="color" onchange="setProxyColor();" placeholder="Color">
+            <div class="center-text">Rarity</div>
             <div class="center-item">
                 <div class="roll-wrapper">
                     <input type="text" id="rarity" name="rarity" placeholder="Rarity" readonly>
@@ -32,8 +38,9 @@
             </div>
         </div>
         <div>
-            <input class="center-item" type="submit" value="SEND">
+            <input class="center-item" type="submit" value="ADD">
         </div>
     </form>
+    <footer>&copy; Copyright 2024 ShiYu Feng</footer>
 </body>
 </html>

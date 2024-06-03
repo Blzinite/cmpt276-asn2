@@ -13,7 +13,7 @@ public class Rectangle {
     private int width;
     private int height;
     private int color;
-    private double area;
+    private int area;
     private Rarity rarity;
 
     public Rectangle() {
@@ -62,7 +62,7 @@ public class Rectangle {
         this.color = color;
     }
 
-    public double getArea() {
+    public int getArea() {
         return area;
     }
 
