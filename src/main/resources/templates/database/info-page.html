@@ -32,7 +32,7 @@
             <div class="center-text">Area(READ-ONLY)</div>
             <input class="center-item" type="text" id="area" name="area" readonly th:value="${rectangle.area}+'u²'">
             <div class="center-text">Color</div>
-            <input class="center-item" type="text" id="color" name="color" onchange="setProxyColor();" th:value='${T(java.lang.String).format("%6s", T(java.lang.Integer).toHexString(rectangle.color)).replace(" ","0")}'>
+            <input class="center-item" type="text" id="color" name="color" onchange="setProxyColor();" th:value='${T(java.lang.String).format("%6s", T(java.lang.Integer).toHexString(rectangle.color)).replace(" ","0").toUpperCase()}'>
             <div class="center-text">Rarity</div>
             <div class="center-item">
                 <div class="roll-wrapper">

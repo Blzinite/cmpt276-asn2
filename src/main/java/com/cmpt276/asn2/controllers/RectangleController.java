@@ -33,6 +33,24 @@ public class RectangleController {
         return "database/home";
     }
 
+    private int genNum(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    @GetMapping("/debug-flood")
+    public String stressTest() {
+        for (int i=0; i<10; i++) {
+            rectRepo.save(new Rectangle(
+                    Integer.toString(genNum(1,100)),
+                    genNum(100,150),
+                    genNum(100,250),
+                    genNum(0,16777215),
+                    Rarity.values()[genNum(1,6)]
+            ));
+        }
+        return "database/success";
+    }
+
     @PostMapping("/db-add")
     public String addRectangle(@RequestParam Map<String, String> newRect, HttpServletResponse response) {
         rectRepo.save(new Rectangle(
@@ -60,6 +78,14 @@ public class RectangleController {
     @GetMapping("/db-purge")
     public String purgeAll() {
         rectRepo.deleteAll();
+        return "database/success";
+    }
+
+    @PostMapping("/db-purgeSelected")
+    public String purgeSelected(@RequestParam Map<String, String> messenger, HttpServletResponse response) {
+        for (String key : messenger.keySet()) {
+            rectRepo.deleteById(Integer.parseInt(key));
+        }
         return "database/success";
     }
 

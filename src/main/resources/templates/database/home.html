@@ -23,10 +23,10 @@
                     <div id="section">ADD</div>
                 </button>
             </form>
-            <form action="db-purge">
+            <form id="purge-form" action="db-purge">
                 <button>
                     <img class="sm_icon" src="resources/purge.svg" alt="x">
-                    <div class="purge">PURGE</div>
+                    <div id="purge" class="purge">PURGE</div>
                 </button>
             </form>
             </div>
@@ -40,10 +40,10 @@
                     <th class="th-5">Action</th>
                 </tr>
                 <tr th:each="rectangle:${rectangles}">
-                    <td class="th-1"><input type="checkbox"></td>
+                    <td class="th-1"><input class="mark" th:onchange="'condemn('+${rectangle.uid}+')'" type="checkbox"></td>
                     <td class="th-2" th:text="${rectangle.uid}"></td>
-                    <td><a class="th-3" th:text="${rectangle.name}" th:href="'rectangles/ID='+${rectangle.uid}"></a></td>
-                    <td class="th-4" th:text='${T(java.lang.String).format("%6s", T(java.lang.Integer).toHexString(rectangle.color)).replace(" ","0")}'></td>
+                    <td><a class="th-3" th:id="'rid-'+${rectangle.uid}" th:text="${rectangle.name}" th:href="'rectangles/ID='+${rectangle.uid}"></a></td>
+                    <td class="th-4" th:text='${T(java.lang.String).format("%6s", T(java.lang.Integer).toHexString(rectangle.color)).replace(" ","0").toUpperCase()}'></td>
                     <td class="th-5"><a class="purge" th:onclick="'purge('+${rectangle.uid}+');'">PURGE!</a></td>
                 </tr>
             </table>
