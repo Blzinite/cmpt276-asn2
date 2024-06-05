@@ -5,6 +5,7 @@ import com.cmpt276.asn2.models.Rectangle;
 import com.cmpt276.asn2.models.RectangleRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class RectangleController {
         System.out.println("Init Test");
 
         // Get items from db
-        List<Rectangle> rectangles = rectRepo.findAll();
+        List<Rectangle> rectangles = rectRepo.findAll(Sort.by(Sort.Direction.ASC, "uid"));
         // end of db call
 
         model.addAttribute("rectangles", rectangles);

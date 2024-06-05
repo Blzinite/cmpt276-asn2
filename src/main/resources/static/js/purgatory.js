@@ -18,7 +18,11 @@ function purge(index) {
 
 let naughtyList = []
 function condemn(index) {
-    naughtyList.push(index);
+    if (document.getElementById("mark-"+index).checked) {
+        naughtyList.push(index);
+    } else {
+        naughtyList.splice(naughtyList.indexOf(index),1);
+    }
 }
 
 document.getElementById("purge").addEventListener('click', function (evt){

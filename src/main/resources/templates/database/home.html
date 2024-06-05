@@ -40,7 +40,7 @@
                     <th class="th-5">Action</th>
                 </tr>
                 <tr th:each="rectangle:${rectangles}">
-                    <td class="th-1"><input class="mark" th:onchange="'condemn('+${rectangle.uid}+')'" type="checkbox"></td>
+                    <td class="th-1"><input class="mark" th:id="'mark-'+${rectangle.uid}" th:onchange="'condemn('+${rectangle.uid}+')'" type="checkbox"></td>
                     <td class="th-2" th:text="${rectangle.uid}"></td>
                     <td><a class="th-3" th:id="'rid-'+${rectangle.uid}" th:text="${rectangle.name}" th:href="'rectangles/ID='+${rectangle.uid}"></a></td>
                     <td class="th-4" th:text='${T(java.lang.String).format("%6s", T(java.lang.Integer).toHexString(rectangle.color)).replace(" ","0").toUpperCase()}'></td>
