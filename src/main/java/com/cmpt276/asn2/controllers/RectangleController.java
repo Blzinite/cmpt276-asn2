@@ -28,16 +28,18 @@ public class RectangleController {
 
         // Get items from db
         List<Rectangle> rectangles = rectRepo.findAll(Sort.by(Sort.Direction.ASC, "uid"));
-        // end of db call
+        // End of db call
 
         model.addAttribute("rectangles", rectangles);
         return "database/home";
     }
 
+    // Generate a random number
     private int genNum(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
+    // Generates 10 entries to test features of the website
     @GetMapping("/debug-flood")
     public String stressTest() {
         for (int i=0; i<10; i++) {
@@ -52,6 +54,7 @@ public class RectangleController {
         return "database/success";
     }
 
+    // Receive a post request and add rectangle with json data
     @PostMapping("/db-add")
     public String addRectangle(@RequestParam Map<String, String> newRect, HttpServletResponse response) {
         rectRepo.save(new Rectangle(
@@ -64,6 +67,7 @@ public class RectangleController {
         return "database/success";
     }
 
+    // Same as add but gets the rectangle by ID, then update the values from json data
     @PostMapping("/db-update")
     public String updateRectangle(@RequestParam Map<String, String> selection, HttpServletResponse response) {
         Rectangle entry = rectRepo.getReferenceById(Integer.parseInt(selection.get("id")));
@@ -76,12 +80,14 @@ public class RectangleController {
         return "database/success";
     }
 
+    // Deletes all entries in the database
     @GetMapping("/db-purge")
     public String purgeAll() {
         rectRepo.deleteAll();
         return "database/success";
     }
 
+    // Gets a list of rectangles in a json post, then delete them
     @PostMapping("/db-purgeSelected")
     public String purgeSelected(@RequestParam Map<String, String> messenger, HttpServletResponse response) {
         for (String key : messenger.keySet()) {
@@ -90,12 +96,14 @@ public class RectangleController {
         return "database/success";
     }
 
+    // Get a post request, consisting of 1 entry and deletes it
     @PostMapping("/db-purgeOne")
     public String purgeOne(@RequestParam Map<String, String> messenger, HttpServletResponse response) {
         rectRepo.deleteById(Integer.parseInt(messenger.get("sinner")));
         return "database/success";
     }
 
+    // Use dynamic routing to create pages for rectangles
     @GetMapping("/rectangles/ID={id}")
     public String rectangleData(@PathVariable String id, Model model) {
         model.addAttribute("rectangle", rectRepo.getReferenceById(Integer.parseInt(id)));

@@ -4,6 +4,7 @@
  * handles the deletion of DT entries
  * @copyright ShiYu Feng 2024
  */
+// Creates a form and send a post request to deleta a single element
 function purge(index) {
     let msgr = document.createElement("form");
     msgr.method = "post";
@@ -16,6 +17,7 @@ function purge(index) {
     msgr.submit();
 }
 
+// Creates a list of Rectangles to delete
 let naughtyList = []
 function condemn(index) {
     if (document.getElementById("mark-"+index).checked) {
@@ -25,6 +27,7 @@ function condemn(index) {
     }
 }
 
+// Purge all if no rectangles are selected(default), otherwise purge selected
 document.getElementById("purge").addEventListener('click', function (evt){
     if (naughtyList.length > 0) {
         evt.preventDefault();

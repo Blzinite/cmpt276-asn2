@@ -4,6 +4,7 @@
  * @copyright ShiYu Feng 2024
  */
 
+// Updates the rectangle visualizer
 function setProxyWidth() {
     let proxy = document.getElementById("rectangle-proxy");
     proxy.style.width = document.getElementById("width").value + "px";
@@ -30,10 +31,12 @@ function setProxyName() {
     proxy.innerText = document.getElementById("name").value
 }
 
+// Another RNG!
 function getRandom(draws) {
     return Math.floor(Math.random()*draws);
 }
 
+// Rarity generator
 function drawRarity() {
     let pull = getRandom(10000);
     let out = document.getElementById("rarity");
@@ -61,6 +64,7 @@ function drawRarity() {
     }
 }
 
+// Animate the rarity
 function timedLoop(i) {
   setTimeout(function() {
     drawRarity() //  your code here
@@ -74,6 +78,7 @@ document.getElementById("roll-rarity").addEventListener('click', function (evt){
     timedLoop(24);
 })
 
+// Called when a rectangle is already created, used to pull data into the textboxes
 function init() {
     setProxyName();
     setProxyColor();
